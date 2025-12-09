@@ -1,4 +1,7 @@
 en:
+  SITE:
+    TITLE: Deeditt - Stories That Last
+    DESCRIPTION: Deeditt is a digital sanctuary for honest writing and mindful remembrance.
   MUNDANA:
     ADMIN:
       THEME:
@@ -239,6 +242,7 @@ en:
         LABEL: Categories
         POSTS_IN: posts in
       FEATURED: Featured
+      DOWNLOAD: Download Deeditt
       TAXONOMYLIST: Popular Tags
       RELATEDPAGES: Related pages
       RANDOM_ARTICLE:
@@ -255,7 +259,20 @@ en:
       LOGIN_LABEL: Login
       SHARE_THIS: Share this
       FOLLOW: Follow
+    DEEDITT_FOOTER:
+      HEADING_1: Ready to explore your own thoughts?
+      INTRO: Start by reading what others have shared, or try writing something yourself.
+      READ_STORIES: Read Others' Stories
+      TRY_WRITING: Try Writing (No signup)
+      HEADING_2: Keep your story alive.
+      TAGLINE: is a quiet space for honest words, gentle growth, and stories that endure.
+      NO_ADS: No ads. No algorithms. Just people being real.
+      JOIN_CTA: Join the Community — it's free
+      GET_APP: or get the app
 es:
+  SITE:
+    TITLE: Deeditt - Historias que Perduran
+    DESCRIPTION: Deeditt es un santuario digital para la escritura honesta y la memoria consciente.
   MUNDANA:
     ADMIN:
       THEME:
@@ -497,6 +514,7 @@ es:
         LABEL: Categorías
         POSTS_IN: publicaciones en
       FEATURED: Destacados
+      DOWNLOAD: Descarga Deeditt
       TAXONOMYLIST: Etiquetas populares
       RELATEDPAGES: Páginas relacionadas
       RANDOM_ARTICLE:
@@ -513,6 +531,16 @@ es:
       LOGIN_LABEL: Acceder
       SHARE_THIS: Compartir esto
       FOLLOW: Seguir
+    DEEDITT_FOOTER:
+      HEADING_1: ¿Listo para explorar tus propios pensamientos?
+      INTRO: Comienza leyendo lo que otros han compartido, o prueba escribir algo tú mismo.
+      READ_STORIES: Lee las Historias de Otros
+      TRY_WRITING: Prueba Escribir (Sin registro)
+      HEADING_2: Mantén tu historia viva.
+      TAGLINE: es un espacio tranquilo para palabras honestas, crecimiento gentil, e historias que perduran.
+      NO_ADS: Sin anuncios. Sin algoritmos. Solo personas siendo reales.
+      JOIN_CTA: Únete a la Comunidad — es gratis
+      GET_APP: o descarga la aplicación
 fr:
   MUNDANA:
     ADMIN:
@@ -751,6 +779,7 @@ fr:
         LABEL: Catégories
         POSTS_IN: Publications dans
       FEATURED: En vedette
+      DOWNLOAD: Download Deeditt
       TAXONOMYLIST: Etiquettes populaires
       RELATEDPAGES: Pages en rlation
       RANDOM_ARTICLE:

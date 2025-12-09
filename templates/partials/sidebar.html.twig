@@ -7,6 +7,9 @@
         , {block_title: 'MUNDANA.SIDEBAR.FEATURED'|t}) }}
     {% endif %}
 
+    {# Download links #}
+    {{ include('partials/sidebar/download-links.html.twig') }}
+
     {# Taxonomy list (if taxonomylist plugin is enabled) #}
     {% if showTaxonomyList %}
         {{ include('partials/sidebar/taxonomylist.html.twig'

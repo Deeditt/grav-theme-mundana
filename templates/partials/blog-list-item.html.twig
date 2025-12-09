@@ -4,6 +4,10 @@
         <{{ title_level }} class="font-weight-bold mb-1">
         <a class="text-dark" href="{{ page.url }}">{{ page_title|e }}</a>
         </{{ title_level }}>
+	{# Page subtitle #}
+        {% if page.header.subtitle %}
+        <p class="text-muted mb-2">{{ page.header.subtitle|markdown(false) }}</p>
+        {% endif %}
         {# If summary is enabled it will displayed #}
         {% if page.header.summary.enabled ?? true %}
             {{ include('partials/blog/page-summary.html.twig') }}
@@ -19,6 +23,18 @@
         {# Show post date #}
         <small class="d-block text-muted">
             {{ include('partials/blog/date.html.twig') }}
+        </small>
+	{# Show tags #}
+        {% if page.taxonomy.tag %}
+        <small class="d-block mt-2">
+            {% for tag in page.taxonomy.tag %}
+                <a class="badge badge-{{ color_style }} text-capitalize" href="{{ blog.url }}/tag{{ config.system.param_sep }}{{ tag|e('url') }}">{{ tag|e }}</a>{% if not loop.last %} {% endif %}
+            {% endfor %}
+        </small>
+        {% endif %}
+        {# Read more link #}
+        <small class="d-block mt-2">
+            <a href="{{ page.url }}" class="text-{{ color_style }} font-weight-bold">Read article →</a>
         </small>
     </div>
     {# Show featured image if it's defined and show_image is true #}

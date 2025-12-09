@@ -36,15 +36,24 @@
         </div>
     </div>
 </div>
+<hr class="my-4" />
 <div class="container-lg pt-4 pb-4">
     <div class="row justify-content-center">
         <div class="col-md-12 col-lg-12">
+	    {% include 'partials/tldr.html.twig' %}
             <article class="article-post">
                 {{ page.content|raw }}
             </article>
+	    {% include 'partials/takeaways.html.twig' %}
+	    {% include 'partials/related-articles.html.twig' %}
             <!-- Author Box -->
             {% if author %}
                 {{ include('partials/blog/author.html.twig') }}
+            {% endif %}
+
+	    <!-- Deeditt Footer CTA -->
+            {% if page.header.show_deeditt_footer %}
+                {{ include('partials/blog/deeditt-footer.html.twig') }}
             {% endif %}
         </div>
     </div>
