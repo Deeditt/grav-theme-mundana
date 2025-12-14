@@ -1,10 +1,4 @@
 <!-- Footer -->
-<style>
-    footer .list-unstyled {
-        font-size: 1rem !important;
-	font-family: inherit;
-    }
-</style>
 <footer class="bg-white border-top pt-5 pb-3 text-muted small">
     <div class="{{ containerClass }}">
         <div class="row">
@@ -68,7 +62,7 @@
                 <div class="mt-3">
                     <small class="text-muted d-block mb-1">Language</small>
                     <select class="form-control form-control-sm" onchange="window.location.href=this.value">
-                        {% embed 'partials/langswitcher-logic.html.twig' %}
+			{% embed 'partials/langswitcher-logic.html.twig' %}
                             {% block language_block_start %}{% endblock %}
                             {% block language_block_end %}{% endblock %}
                             {% block language_item %}

@@ -6,6 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 {# -------------------------
+   Robots Meta Tag
+   ------------------------- #}
+{% set robots = page.header.robots ?: 'index, follow' %}
+<meta name="robots" content="{{ robots|e }}">
+
+{# -------------------------
    Title
    ------------------------- #}
 {% set meta_title = page_title is defined ? page_title ~ ' | ' ~ site_title : site_title %}
@@ -50,10 +56,54 @@
 {% endif %}
 
 {# -------------------------
+   Keywords
+   ------------------------- #}
+{# Try to get keywords from current page or parents #}
+{% set page_keywords = page.metadata.keywords %}
+
+{# If no keywords, try parent page #}
+{% if not page_keywords and page.parent() %}
+    {% set parent_page = page.parent() %}
+    {% set page_keywords = parent_page.metadata.keywords %}
+
+    {# If still no keywords, try grandparent #}
+    {% if not page_keywords and parent_page.parent() %}
+        {% set grandparent_page = parent_page.parent() %}
+        {% set page_keywords = grandparent_page.metadata.keywords %}
+    {% endif %}
+{% endif %}
+
+{# Convert to string if it's an array, then output #}
+{% if page_keywords %}
+    {% if page_keywords is iterable %}
+        {# Filter out 'keywords' if it appears in the array #}
+        {% set filtered_keywords = page_keywords|filter(v => v != 'keywords') %}
+        {% if filtered_keywords|length > 0 %}
+            {% set keywords_string = filtered_keywords|join(', ') %}
+        {% else %}
+            {% set keywords_string = page_keywords|join(', ') %}
+        {% endif %}
+    {% else %}
+        {% set keywords_string = page_keywords %}
+    {% endif %}
+<meta name="keywords" content="{{ keywords_string|e }}">
+{% endif %}
+
+{# -------------------------
    Social Media Defaults
    ------------------------- #}
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
+
+{# -------------------------
+   Article Meta Tags
+   ------------------------- #}
+{% if page.taxonomy.category[0] %}
+<meta property="article:section" content="{{ page.taxonomy.category[0]|e }}">
+{% endif %}
+{% for tag in page.taxonomy.tag %}
+<meta property="article:tag" content="{{ tag|e }}">
+{% endfor %}
 
 {# -------------------------
    Structured Data (JSON-LD)
@@ -71,6 +121,8 @@
   datePublished: page.date|date('c'),
   inLanguage: lang,
   wordCount: page.content|wordcount,
+  timeRequired: 'PT' ~ ((page.content|wordcount / 200)|round(0, 'floor')) ~ 'M',
+  keywords: (page.taxonomy.tag|join(', ')|default('')),
   author: {
     '@type': 'Person',
     name: author,
@@ -85,7 +137,7 @@
  Custom metadata only (excludes common duplicates)
  ------------------------- #}
 {% for meta in page.metadata %}
-    {% if meta.name and meta.name not in ['description', 'generator', 'viewport', 'author', 'keywords'] %}
+    {% if meta.name and meta.name not in ['description', 'generator', 'viewport', 'author'] %}
 <meta name="{{ meta.name|e }}" content="{{ meta.content|e }}">
     {% elseif meta.http_equiv and meta.http_equiv != 'X-UA-Compatible' %}
 <meta http-equiv="{{ meta.http_equiv|e }}" content="{{ meta.content|e }}">
