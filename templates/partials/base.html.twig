@@ -136,6 +136,9 @@ https://github.com/pmoreno-rodriguez/grav-theme-mundana
 
     <body class="{% block body_classes %}{{ body_classes }}{% endblock %}">
 
+        {# Skip navigation link for accessibility #}
+        <a href="#main-content" class="skip-to-main">Skip to main content</a>
+
         {% block navbar %}
             <!-- Navbar -->
             {{ include('partials/navbar.html.twig') }}
@@ -143,7 +146,7 @@ https://github.com/pmoreno-rodriguez/grav-theme-mundana
 
         {% block main %}
             <!-- Content -->
-            <main class="site-content">
+            <main id="main-content" role="main" class="site-content">
                 <div class="{{ containerClass }}">
 
                     {# System messages block #}

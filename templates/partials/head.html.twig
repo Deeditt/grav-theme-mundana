@@ -1,5 +1,18 @@
 <head>
 
+    {# Critical CSS inlined for performance #}
+    <style>
+        {% include 'partials/head/critical.css.twig' %}
+    </style>
+
+    {# Preload critical resources for performance #}
+    {% if not theme_var('google_fonts_local') %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;400i;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;400i;700&display=swap"></noscript>
+    {% endif %}
+
     {{ include('partials/head/favicon.html.twig') }}
     {{ include('partials/head/seo.html.twig') }}
     {{ include('partials/head/assets.html.twig') }}

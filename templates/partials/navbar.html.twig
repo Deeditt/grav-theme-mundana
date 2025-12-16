@@ -13,7 +13,7 @@
             {% if logo_enabled and logo %}
                 {% set logo_file = (logo|first).name %}
                 <div class="mr-3">
-                    <img class="align-self-center w_logo" src="{{ url('theme://images/logo/' ~ logo_file) }}" alt="{{ site.title|e }} - {{ site.metadata.description|default('Deeditt - Stories That Teach & Grow')|e }}" >
+                    <img class="align-self-center w_logo" src="{{ url('theme://images/logo/' ~ logo_file) }}" alt="{{ site.title|e }}" width="{{ widthLogo|default(150) }}" height="50" >
                 </div>
             {% endif %}
 

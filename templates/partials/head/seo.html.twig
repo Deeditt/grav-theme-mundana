@@ -105,6 +105,14 @@
 <meta property="article:tag" content="{{ tag|e }}">
 {% endfor %}
 
+{# Article time meta tags #}
+{% if page.date %}
+<meta property="article:published_time" content="{{ page.date|date('c') }}">
+{% endif %}
+{% if page.header.date_modified %}
+<meta property="article:modified_time" content="{{ page.header.date_modified|date('c') }}">
+{% endif %}
+
 {# -------------------------
    Structured Data (JSON-LD)
    ------------------------- #}
@@ -119,15 +127,20 @@
   headline: meta_title|e,
   image: featuredImage ? url(featuredImage.url, true) : '',
   datePublished: page.date|date('c'),
+  dateModified: page.header.date_modified|default(page.date)|date('c'),
   inLanguage: lang,
   wordCount: page.content|wordcount,
   timeRequired: 'PT' ~ ((page.content|wordcount / 200)|round(0, 'floor')) ~ 'M',
   keywords: (page.taxonomy.tag|join(', ')|default('')),
   author: {
-    '@type': 'Person',
-    name: author,
-    description: author_bio,
-    url: author_twitter,
+    '@type': 'Organization',
+    name: 'Deeditt Editorial Team',
+    url: canonical_url|split('/')|slice(0, 3)|join('/') ~ '/',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Deeditt',
+    url: canonical_url|split('/')|slice(0, 3)|join('/') ~ '/',
   },
   description: clean_description,
 }|json_encode(constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES'))|raw }}

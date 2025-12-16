@@ -2,6 +2,34 @@
 (function() {
     $(document).ready(function() {
       $('[data-toggle="tooltip"]').tooltip();
+
+      // Keyboard navigation enhancements
+      // Ensure focus is visible when using keyboard
+      $('body').on('keydown', function(e) {
+        // Only add focus-visible class when using tab key
+        if (e.key === 'Tab') {
+          $('body').addClass('user-is-tabbing');
+        }
+      });
+
+      $('body').on('mousedown', function() {
+        $('body').removeClass('user-is-tabbing');
+      });
+
+      // Skip to main content when skip link is focused and activated
+      $('.skip-to-main').on('click', function(e) {
+        e.preventDefault();
+        var target = $('#main-content');
+        if (target.length) {
+          target.attr('tabindex', '-1');
+          target.focus();
+        }
+      });
+
+      // Add ARIA live region for dynamic content
+      if (!$('#aria-live-region').length) {
+        $('body').append('<div id="aria-live-region" aria-live="polite" class="sr-only"></div>');
+      }
   
       $(window).on('scroll resize', function () {
           if ($(this).scrollTop() > 60) {

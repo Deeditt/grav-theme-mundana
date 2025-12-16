@@ -5,17 +5,17 @@
     {% do assets.addCss('theme://assets/css/bootstrap' ~ compress, 12, {rel: 'stylesheet'}) %}
     {# Theme Stylesheet #}
     {% do assets.addCss('theme://assets/css/theme' ~ compress, 11, {rel: 'stylesheet'}) %}
+    {# Accessibility Improvements #}
+    {% do assets.addCss('theme://assets/css/accessibility.css', 10, {rel: 'stylesheet'}) %}
     {# Font Awesome Icons #}
     {% if theme_var('font_awesome_local') %}
         {% do assets.addCSS('theme://assets/css/fontawesome-all.min.css', {rel: 'stylesheet'}) %}
     {% else %}
         {% do assets.addCSS('https://use.fontawesome.com/releases/v5.15.4/css/all.css', {rel: 'stylesheet'}) %}
     {% endif %}
-    {# Google Fonts #}
+    {# Google Fonts - loaded via preload in head.html.twig #}
     {% if theme_var('google_fonts_local') %}
         {% do assets.addCSS('theme://assets/css/google-fonts-local.css', {rel: 'stylesheet'}) %}
-    {% else %}
-        {% do assets.addCSS('https://fonts.googleapis.com/css?family=Lora:400,400i,700&display=swap', {rel: 'stylesheet'}) %}
     {% endif %}
     {% set styles %}
         {# CSS styles to change hover color on links dynamically #}

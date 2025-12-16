@@ -1,0 +1,142 @@
+// Accessibility improvements for Mundana theme
+// WCAG AA compliance
+
+// Skip navigation link
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: $primary;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+
+  &:focus {
+    top: 6px;
+  }
+}
+
+// Enhanced focus indicators for better keyboard navigation
+.btn,
+.nav-link,
+.form-control,
+.form-select,
+.navbar-toggler,
+a {
+  &:focus {
+    outline: 3px solid $primary !important;
+    outline-offset: 2px !important;
+  }
+}
+
+// High contrast mode improvements
+@media (prefers-contrast: high) {
+  .btn,
+  .nav-link {
+    border: 1px solid currentColor;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Improve contrast for interactive elements
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: $white;
+  background-color: darken($primary, 10%);
+}
+
+// Card links for better accessibility
+.card {
+  a {
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Form validation with better contrast
+.form-control.is-valid,
+.form-control.is-invalid {
+  background-image: none;
+  border-width: 2px;
+}
+
+// Alert improvements
+.alert {
+  border-left: 4px solid currentColor;
+
+  &-danger {
+    border-left-color: $danger;
+  }
+
+  &-success {
+    border-left-color: $success;
+  }
+
+  &-warning {
+    border-left-color: $warning;
+  }
+
+  &-info {
+    border-left-color: $info;
+  }
+}
+
+// Table headers for better screen reader support
+.table {
+  th {
+    font-weight: 600;
+  }
+}
+
+// Better link contrast in content
+.content {
+  a {
+    color: $primary;
+    text-decoration: underline;
+
+    &:hover {
+      color: darken($primary, 15%);
+    }
+
+    &:focus {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Code blocks improvements
+pre,
+code {
+  background-color: $gray-100;
+  color: $gray-900;
+  border-radius: 4px;
+}
+
+// Image alt text indicator (for development)
+img:not([alt]) {
+  outline: 2px dashed $danger;
+}
+
+// Breadcrumb improvements
+.breadcrumb {
+  a {
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
